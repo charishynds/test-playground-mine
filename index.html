@@ -1,11 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello</title>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Montgomery Yield Matchmaker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=Roboto+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0a375c",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111a21",
+                        "accent-red": "#b91c1c",
+                        "accent-yellow": "#eab308",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "mono": ["Roboto Mono", "monospace"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .map-gradient-pin {
+            background: radial-gradient(circle, #f87171 0%, #b91c1c 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
 </head>
-<body>
-    <h1>Hello</h1>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 overflow-hidden h-screen flex flex-col">
+<header class="h-16 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-6 bg-white dark:bg-background-dark z-20">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary dark:text-blue-400">query_stats</span>
+<h1 class="text-xl font-bold tracking-tight font-display">The Montgomery Yield Matchmaker</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full border border-primary/20">
+<span class="size-2 bg-green-500 rounded-full"></span>
+<span class="text-xs font-medium text-primary dark:text-blue-300">Live Data Sync</span>
+</div>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<main class="flex-1 flex overflow-hidden relative">
+<aside class="w-[30%] flex flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark z-10">
+<div class="p-4 border-b border-slate-200 dark:border-slate-800">
+<p class="font-mono text-[10px] text-primary dark:text-blue-400 uppercase tracking-widest">
+                    [Reconciling 120k records... Calculating Yield...]
+                </p>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-6 custom-scrollbar">
+<div class="flex gap-3">
+<div class="size-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-sm">smart_toy</span>
+</div>
+<div class="space-y-3">
+<div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded-xl rounded-tl-none border border-slate-200 dark:border-slate-700">
+<p class="text-sm leading-relaxed mb-4">Here is the side-by-side comparison for Parcel #10-05 and Parcel #12-09 based on current yield metrics.</p>
+<div class="grid grid-cols-3 gap-y-4 text-[13px]">
+<div class="col-span-1 text-slate-500 dark:text-slate-400 font-medium py-1">Metric</div>
+<div class="col-span-1 text-primary dark:text-blue-300 font-bold py-1">#10-05</div>
+<div class="col-span-1 text-slate-400 dark:text-slate-500 py-1">#12-09</div>
+<div class="col-span-1 border-t border-slate-200 dark:border-slate-700 pt-2 text-slate-500 dark:text-slate-400">Yield Score</div>
+<div class="col-span-1 border-t border-slate-200 dark:border-slate-700 pt-2 font-bold text-green-500">92/100</div>
+<div class="col-span-1 border-t border-slate-200 dark:border-slate-700 pt-2">64/100</div>
+<div class="col-span-1 border-t border-slate-200 dark:border-slate-700 pt-2 text-slate-500 dark:text-slate-400">Market Gap</div>
+<div class="col-span-1 border-t border-slate-200 dark:border-slate-700 pt-2">Low (12%)</div>
+<div class="col-span-1 border-t border-slate-200 dark:border-slate-700 pt-2">High (45%)</div>
+<div class="col-span-1 border-t border-slate-200 dark:border-slate-700 pt-2 text-slate-500 dark:text-slate-400">Maint. Cost</div>
+<div class="col-span-1 border-t border-slate-200 dark:border-slate-700 pt-2">$1,200/yr</div>
+<div class="col-span-1 border-t border-slate-200 dark:border-slate-700 pt-2">$4,500/yr</div>
+</div>
+</div>
+<p class="text-[10px] text-slate-400 px-1">Sarah (Copilot) • Just now</p></div>
+</div>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-background-dark">
+<div class="relative flex items-center">
+<input class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3 text-sm pr-12 focus:ring-2 focus:ring-primary focus:border-transparent text-slate-900 dark:text-white" type="text" value="Compare the top two plots in your list"/>
+<button class="absolute right-2 p-1.5 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</aside>
+<section class="flex-1 relative bg-slate-900 overflow-hidden">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d215543.12345678!2d-86.5!3d32.3792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f9!3m3!1m2!1s0x88891b6e3e099999%3A0x123456789!2sMontgomery%2C%20AL!5e0!3m2!1sen!2sus!4v1234567890" width="100%" height="100%" style="border:0;position:absolute;inset:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div class="absolute top-1/4 left-1/3 size-3 bg-accent-yellow rounded-full blur-[2px] shadow-[0_0_10px_#eab308] z-10"></div>
+<div class="absolute top-1/2 left-1/2 size-3 bg-accent-yellow rounded-full blur-[2px] shadow-[0_0_10px_#eab308] z-10"></div>
+<div class="absolute top-1/3 left-2/3 size-3 bg-accent-yellow rounded-full blur-[2px] shadow-[0_0_10px_#eab308] z-10"></div>
+<div class="absolute top-2/3 left-1/4 size-4 bg-accent-red rounded-full blur-[2px] shadow-[0_0_12px_#ef4444] z-10"></div>
+<div class="absolute top-[55%] left-[45%] z-10 group cursor-pointer" onclick="togglePanel()">
+<div class="relative">
+<div class="absolute -inset-4 bg-accent-red/20 rounded-full animate-pulse"></div>
+<div class="size-6 bg-accent-red rounded-full border-2 border-white shadow-xl flex items-center justify-center">
+<div class="size-2 bg-white rounded-full"></div>
+</div>
+<div class="absolute top-8 left-1/2 -translate-x-1/2 bg-white dark:bg-slate-800 px-3 py-1.5 rounded-lg shadow-xl whitespace-nowrap border border-slate-200 dark:border-slate-700">
+<p class="text-[10px] font-bold text-accent-red uppercase tracking-tighter">High Yield: #10-05</p>
+</div>
+</div>
+</div>
+<div id="sidePanel" class="absolute right-0 top-0 h-full w-[380px] bg-white dark:bg-background-dark shadow-2xl z-20 border-l border-slate-200 dark:border-slate-800 flex flex-col transform transition-transform duration-300 translate-x-full">
+<div class="p-6 border-b border-slate-200 dark:border-slate-800">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Parcel Profile</h2>
+<p class="text-xl font-bold font-display">#10-05 West Residential</p>
+</div>
+<button class="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded" onclick="togglePanel()">
+<span class="material-symbols-outlined text-slate-400">close</span>
+</button>
+</div>
+<div class="flex items-center gap-4 bg-primary/5 dark:bg-blue-400/5 p-4 rounded-xl border border-primary/10">
+<div class="relative size-16 shrink-0">
+<svg class="size-full" viewbox="0 0 36 36">
+<path class="stroke-slate-200 dark:stroke-slate-800 fill-none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-width="3"></path>
+<path class="stroke-green-500 fill-none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="92, 100" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-lg font-bold">92</span>
+<span class="text-[8px] uppercase text-slate-400">Score</span>
+</div>
+</div>
+<div>
+<p class="text-sm font-semibold text-green-500">Tier 1 Opportunity</p>
+<p class="text-xs text-slate-500">Highest projected yield in West Montgomery Sector.</p>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
+<div class="space-y-3">
+<div class="flex justify-between items-center text-xs font-bold">
+<span class="text-slate-400">ZONING SIMULATION</span>
+<span class="text-primary dark:text-blue-400">Active: 2026 Policy</span>
+</div>
+<div class="relative h-10 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center p-1">
+<div class="flex-1 text-center text-[10px] font-bold text-slate-400 z-10">1985</div>
+<div class="flex-1 text-center text-[10px] font-bold text-white z-10">2026</div>
+<div class="absolute right-1 top-1 bottom-1 w-[48%] bg-primary rounded-full shadow-lg"></div>
+</div>
+<p class="text-xs leading-relaxed text-slate-500 italic">
+                            Potential Tax Revenue: <span class="text-slate-900 dark:text-slate-100 font-bold">$15,000/yr</span> (up from $800 liability)
+                        </p>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="p-3 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-slate-200 dark:border-slate-700">
+<div class="flex justify-between items-center mb-1">
+<span class="text-[10px] font-bold text-slate-400 uppercase">Market Gap</span>
+<span class="material-symbols-outlined text-xs text-slate-400">info</span>
+</div>
+<p class="text-lg font-bold">40%</p>
+</div>
+<div class="p-3 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-slate-200 dark:border-slate-700">
+<div class="flex justify-between items-center mb-1">
+<span class="text-[10px] font-bold text-slate-400 uppercase">Safety Impact</span>
+<span class="material-symbols-outlined text-xs text-slate-400">info</span>
+</div>
+<p class="text-lg font-bold">60% <span class="text-[10px] font-normal text-slate-500">dump reduction</span></p>
+</div>
+</div>
+<div class="space-y-3">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest">AI Concept Visualization</p>
+<div class="group relative aspect-video rounded-xl overflow-hidden bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+<img alt="AI concept of a neighborhood bakery" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" data-alt="AI-generated photorealistic concept of a modern small neighborhood bakery on an urban corner" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxzKwSnLe81qEEuXQNbFWRPDCJPa7hZ8PCUSZLwD5eakI-u2pmZLN8fEjipoRX4Tl3kk9SGz4Ee39HECzx8BrO658Bf5gLCs23ymHshRbFC8KejHZcv6KFO2xwPSZpIpDdYHA3gDYojVSdDhdylb3XldrfLv0Bas8lBaNDK77Xvk6zgfO6ecmlPkDuUxqAap5Rzz5tg-QKTSjyX4AXyaP58MRlzIMxjyvT9jlmafUaPVm1krRWRMQDpRgDa87HW8aZX_b4rizYnvrQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-400 text-sm">auto_awesome</span>
+<span class="text-[10px] font-medium text-white">AI-Generated Concept: Mixed-Use Bakery</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 border-t border-slate-200 dark:border-slate-800">
+<button class="w-full bg-primary text-white py-3 rounded-lg font-bold text-sm shadow-xl shadow-primary/20 hover:bg-blue-900 transition-colors">
+                        Initiate Acquisition Request
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<footer class="h-10 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 flex items-center justify-between px-6 z-30">
+<p class="text-[10px] text-slate-400 font-medium">Powered by Montgomery Open Data &amp; Bright Data</p>
+<div class="flex items-center gap-4">
+<span class="text-[10px] text-slate-400 font-medium">v2.4.0-stable</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-green-500">security</span>
+<span class="text-[10px] text-slate-400">GovCloud Encrypted</span>
+</div>
+</div>
+</footer>
+<script>
+function togglePanel() {
+  const panel = document.getElementById('sidePanel');
+  panel.classList.toggle('translate-x-full');
+}
+</script>
 </body>
 </html>
